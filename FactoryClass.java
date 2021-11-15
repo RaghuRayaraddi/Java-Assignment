@@ -1,24 +1,19 @@
-package com.technoelevate.java.mondayassignment;
+package com.technoelevate.java.abstraction;
 
-
-
-public class FactoryClass  {
-	Employee employee=null;
+public class FactoryClass {
+	Browser browser=null;
 	
-	public Employee getEmployee(String name) {
-		if(name.equalsIgnoreCase("Avinash")) {
-			employee = new Avinash();
-		}else if(name.equalsIgnoreCase("Dhananjay")) {
-			employee = new Dhananjay();
-		}else if(name.equalsIgnoreCase("Nitish")) {
-			employee = new Nitish();
-		}else 
-		{
-			name.equalsIgnoreCase("Venkatesh");
-			employee = new Venkatesh();
+	public Browser getBrowser(String name) {
+		if(name.equalsIgnoreCase("Chrome")) {
+			browser = new Chrome();
+		}else if(name.equalsIgnoreCase("Mozilla")) {
+			browser = new Mozilla();
+		}else if(name.equalsIgnoreCase("Opera")) {
+			browser = new Opera();
+		}else if(name.equalsIgnoreCase("Safari")) {
+			browser = new Safari();
 		}
-		return employee;
-	}
+		return browser;
 	
-
+	}
 }

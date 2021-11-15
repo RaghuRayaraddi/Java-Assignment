@@ -1,1 +1,1 @@
-package com.technoelevate.java.tuesdayassignment;
+package com.technoelevate.java.typecasting;

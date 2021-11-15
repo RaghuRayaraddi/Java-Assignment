@@ -1,10 +1,11 @@
-package com.technoelevate.java.tuesdayassignment;
+package com.technoelevate.java.typecasting;
 
 public class MainMethod1 {
 
-	public static void main(String[] args) throws notEligible {
-		Person person=new Person(21);
-		person.eligible(23);
+	public static void main(String[] args) {
+		Parent parent1=new Child();
+		parent1.parentMethod();
+		System.out.println(parent1.num);
 	}
 
 }
