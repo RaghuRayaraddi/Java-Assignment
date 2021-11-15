@@ -1,1 +1,1 @@
-package com.technoelevate.java.multithreading.synchronised;
+package com.technoelevate.java.multithreading;
