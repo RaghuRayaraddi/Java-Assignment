@@ -1,1 +1,1 @@
-package com.technoelevate.java.typecasting;
+package com.technoelevate.java.multithreading.synchronised;
