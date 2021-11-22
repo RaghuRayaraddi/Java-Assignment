@@ -1,0 +1,295 @@
+Enter password: ****
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 26
+Server version: 8.0.27 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2021, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> use company;
+Database changed
+mysql> select * from employee;
++--------+-----------+------------------+---------+------+------+
+| emp_id | emp_name  | designation      | salary  | LOC  | age  |
++--------+-----------+------------------+---------+------+------+
+|      1 | PRANSHU   | CONFUSED TRAINEE | 26000.9 | NULL |   23 |
+|      2 | VENKATESH | PROJECT MANAGER  |  5500.9 | NULL |   22 |
+|      3 | RRR       | PURE DEVELOPER   | 47000.9 | NULL |   22 |
+|      4 | GANESH    | STUDIOUS         |   31000 | NULL |   24 |
+|      5 | DHANANJAY | CR               |   36000 | NULL |   20 |
++--------+-----------+------------------+---------+------+------+
+5 rows in set (0.00 sec)
+
+mysql> alter table employee
+    -> add column dept_no;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 2
+mysql> alter table employee
+    -> add column dept_no;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 2
+mysql> select emp_name,salary from employee;
++-----------+---------+
+| emp_name  | salary  |
++-----------+---------+
+| PRANSHU   | 26000.9 |
+| VENKATESH |  5500.9 |
+| RRR       | 47000.9 |
+| GANESH    |   31000 |
+| DHANANJAY |   36000 |
++-----------+---------+
+5 rows in set (0.00 sec)
+
+mysql> select emp_name,age from employee;
++-----------+------+
+| emp_name  | age  |
++-----------+------+
+| PRANSHU   |   23 |
+| VENKATESH |   22 |
+| RRR       |   22 |
+| GANESH    |   24 |
+| DHANANJAY |   20 |
++-----------+------+
+5 rows in set (0.00 sec)
+
+mysql> select designation from employee;
++------------------+
+| designation      |
++------------------+
+| CONFUSED TRAINEE |
+| PROJECT MANAGER  |
+| PURE DEVELOPER   |
+| STUDIOUS         |
+| CR               |
++------------------+
+5 rows in set (0.00 sec)
+
+mysql> select emp_id,emp_name from employee;
++--------+-----------+
+| emp_id | emp_name  |
++--------+-----------+
+|      1 | PRANSHU   |
+|      2 | VENKATESH |
+|      3 | RRR       |
+|      4 | GANESH    |
+|      5 | DHANANJAY |
++--------+-----------+
+5 rows in set (0.00 sec)
+
+mysql> select emp_name,designation from employee;
++-----------+------------------+
+| emp_name  | designation      |
++-----------+------------------+
+| PRANSHU   | CONFUSED TRAINEE |
+| VENKATESH | PROJECT MANAGER  |
+| RRR       | PURE DEVELOPER   |
+| GANESH    | STUDIOUS         |
+| DHANANJAY | CR               |
++-----------+------------------+
+5 rows in set (0.00 sec)
+
+mysql> select salary from employee;
++---------+
+| salary  |
++---------+
+| 26000.9 |
+|  5500.9 |
+| 47000.9 |
+|   31000 |
+|   36000 |
++---------+
+5 rows in set (0.00 sec)
+
+mysql> select salary*12 'annual_salary' from employee;
++--------------------+
+| annual_salary      |
++--------------------+
+| 312010.80000000005 |
+|  66010.79999999999 |
+|           564010.8 |
+|             372000 |
+|             432000 |
++--------------------+
+5 rows in set (0.01 sec)
+
+mysql> select 6*salary 'half_term salary' from employee;
++--------------------+
+| half_term salary   |
++--------------------+
+| 156005.40000000002 |
+| 33005.399999999994 |
+|           282005.4 |
+|             186000 |
+|             216000 |
++--------------------+
+5 rows in set (0.00 sec)
+
+mysql> select emp_name,salary+salary*0.15 '15% hike' from emp;
+ERROR 1146 (42S02): Table 'company.emp' doesn't exist
+mysql> select emp_name,salary+salary*0.15 '15% hike' from employee;
++-----------+--------------------+
+| emp_name  | 15% hike           |
++-----------+--------------------+
+| PRANSHU   | 29901.035000000003 |
+| VENKATESH |           6326.035 |
+| RRR       |          54051.035 |
+| GANESH    |              35650 |
+| DHANANJAY |              41400 |
++-----------+--------------------+
+5 rows in set (0.01 sec)
+
+mysql> select emp_name,salary-salary*0.19 '19% deduction' from employee;
++-----------+-------------------+
+| emp_name  | 19% deduction     |
++-----------+-------------------+
+| PRANSHU   |         21060.729 |
+| VENKATESH | 4455.728999999999 |
+| RRR       |         38070.729 |
+| GANESH    |             25110 |
+| DHANANJAY |             29160 |
++-----------+-------------------+
+5 rows in set (0.01 sec)
+
+mysql> select emp_name,salary+500 from employee;
++-----------+------------+
+| emp_name  | salary+500 |
++-----------+------------+
+| PRANSHU   |    26500.9 |
+| VENKATESH |     6000.9 |
+| RRR       |    47500.9 |
+| GANESH    |      31500 |
+| DHANANJAY |      36500 |
++-----------+------------+
+5 rows in set (0.01 sec)
+
+mysql> select emp.*,12*salary from employee;
+ERROR 1051 (42S02): Unknown table 'emp'
+mysql> select employee.*,12*salary from employee;
++--------+-----------+------------------+---------+------+------+--------------------+
+| emp_id | emp_name  | designation      | salary  | LOC  | age  | 12*salary          |
++--------+-----------+------------------+---------+------+------+--------------------+
+|      1 | PRANSHU   | CONFUSED TRAINEE | 26000.9 | NULL |   23 | 312010.80000000005 |
+|      2 | VENKATESH | PROJECT MANAGER  |  5500.9 | NULL |   22 |  66010.79999999999 |
+|      3 | RRR       | PURE DEVELOPER   | 47000.9 | NULL |   22 |           564010.8 |
+|      4 | GANESH    | STUDIOUS         |   31000 | NULL |   24 |             372000 |
+|      5 | DHANANJAY | CR               |   36000 | NULL |   20 |             432000 |
++--------+-----------+------------------+---------+------+------+--------------------+
+5 rows in set (0.00 sec)
+
+mysql> select distinct salary from employee;
++---------+
+| salary  |
++---------+
+| 26000.9 |
+|  5500.9 |
+| 47000.9 |
+|   31000 |
+|   36000 |
++---------+
+5 rows in set (0.01 sec)
+
+mysql> select distinct age;
+ERROR 1054 (42S22): Unknown column 'age' in 'field list'
+mysql> select distinct age from employee;
++------+
+| age  |
++------+
+|   23 |
+|   22 |
+|   24 |
+|   20 |
++------+
+4 rows in set (0.00 sec)
+
+mysql> select distinct designation from employee;
++------------------+
+| designation      |
++------------------+
+| CONFUSED TRAINEE |
+| PROJECT MANAGER  |
+| PURE DEVELOPER   |
+| STUDIOUS         |
+| CR               |
++------------------+
+5 rows in set (0.01 sec)
+
+mysql> select emp_name from employee where age=22;
++-----------+
+| emp_name  |
++-----------+
+| VENKATESH |
+| RRR       |
++-----------+
+2 rows in set (0.01 sec)
+
+mysql> select emp_name from employee where salary>5000;
++-----------+
+| emp_name  |
++-----------+
+| PRANSHU   |
+| VENKATESH |
+| RRR       |
+| GANESH    |
+| DHANANJAY |
++-----------+
+5 rows in set (0.00 sec)
+
+mysql> select emp_name from employee where salary>10000;
++-----------+
+| emp_name  |
++-----------+
+| PRANSHU   |
+| RRR       |
+| GANESH    |
+| DHANANJAY |
++-----------+
+4 rows in set (0.00 sec)
+
+mysql> select emp_name from employee where salary>30000;
++-----------+
+| emp_name  |
++-----------+
+| RRR       |
+| GANESH    |
+| DHANANJAY |
++-----------+
+3 rows in set (0.00 sec)
+
+mysql> select 12*salary 'annual salary' from employee where age=22;
++-------------------+
+| annual salary     |
++-------------------+
+| 66010.79999999999 |
+|          564010.8 |
++-------------------+
+2 rows in set (0.00 sec)
+
+mysql> select emp_name,salary from employee where salary<20000;
++-----------+--------+
+| emp_name  | salary |
++-----------+--------+
+| VENKATESH | 5500.9 |
++-----------+--------+
+1 row in set (0.00 sec)
+
+mysql> select emp_name,salary from employee where salary<30000;
++-----------+---------+
+| emp_name  | salary  |
++-----------+---------+
+| PRANSHU   | 26000.9 |
+| VENKATESH |  5500.9 |
++-----------+---------+
+2 rows in set (0.00 sec)
+
+mysql> select emp_name,emp_id from employee where age=23;
++----------+--------+
+| emp_name | emp_id |
++----------+--------+
+| PRANSHU  |      1 |
++----------+--------+
+1 row in set (0.00 sec)
+
+mysql>
